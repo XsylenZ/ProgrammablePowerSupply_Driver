@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.30)
-project(programmable-power-supply C)
+project(korad_power_supply_driver)
 
-set(CMAKE_C_STANDARD 11)
+# Build the library
+add_subdirectory(src)
 
-add_library(programmable-power-supply SHARED library.c
-        command_ka3000v2.h
-        command_kd3300v4.h)
+# Build the example
+add_subdirectory(examples)
