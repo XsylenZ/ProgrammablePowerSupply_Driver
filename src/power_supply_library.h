@@ -1,5 +1,5 @@
-#ifndef PROGRAMMABLE_POWER_SUPPLY_LIBRARY_H
-#define PROGRAMMABLE_POWER_SUPPLY_LIBRARY_H
+#ifndef POWER_SUPPLY_LIBRARY_H
+#define POWER_SUPPLY_LIBRARY_H
 
 #include <stdio.h>
 
@@ -10,8 +10,8 @@ extern "C" {
 // Supported protocols
 typedef enum
 {
-    PROTOCOL_KA3000V2,
-    PROTOCOL_KD3300V4
+    PSL_PROTOCOL_KA3000V2,
+    PSL_PROTOCOL_KD3300V4
 } protocol_type_t;
 
 // Structure for machine configuration
@@ -23,15 +23,23 @@ typedef struct
     int I_precision; // Number of digits after the decimal point (current)
 } device_config_t;
 
-// Functions to manage global machine configuration
-int set_device_config(const device_config_t* config);
-const device_config_t* get_device_config(void);
 
-int set_voltage_command(int channel, int voltage, char* buffer, size_t buffer_size);
-int set_current_command(int channel, int current, char* buffer, size_t buffer_size);
+
+// Functions to manage global machine configuration
+int psl_set_device_config(const device_config_t* config);
+const device_config_t* psl_get_device_config(void);
+
+const char* psl_get_command(void);
+
+int psl_set_voltage_command(int channel, double voltage);
+int psl_set_current_command(int channel, double current);
+
+int psl_set_all_output_command(int state);
+int psl_set_single_output_command(int channel, int state);
+
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif //PROGRAMMABLE_POWER_SUPPLY_LIBRARY_H
+#endif //POWER_SUPPLY_LIBRARY_H
