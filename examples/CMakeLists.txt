@@ -9,7 +9,7 @@ link_directories(${LIBRARY_PATH})
 
 # Add the example executable
 add_executable(KA3305P_example main.cpp
-        ${LIBRARY_PATH}/library.c)
+        ${LIBRARY_PATH}/power_supply_library.c)
 
 # Link the shared library to the example
 #target_link_libraries(KA3305P_example programmable-power-supply)
